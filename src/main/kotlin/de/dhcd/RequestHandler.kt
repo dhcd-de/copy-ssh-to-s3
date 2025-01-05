@@ -28,8 +28,7 @@ class RequestHandler(
     fun download(config: SourceConfiguration): ByteArray {
         SSHClient().use { sshClient ->
 
-            // sshClient.addHostKeyVerifier() // TODO add fingerprint of server.
-
+            sshClient.addHostKeyVerifier(config.hostFingerprint)
             sshClient.connect(InetAddress.getByName(config.hostname), config.port)
             sshClient.authPublickey(config.username, OpenSSHKeyFile().apply { init(config.privateKey, null) })
 

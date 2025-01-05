@@ -9,6 +9,7 @@ data class Configuration(
 
 data class SourceConfiguration(
     val hostname: String,
+    val hostFingerprint: String,
     val port: Int,
     val path: String,
     val username: String,
