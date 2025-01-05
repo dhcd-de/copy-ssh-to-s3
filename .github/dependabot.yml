@@ -1,0 +1,25 @@
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "Europe/Zurich"
+    open-pull-requests-limit: 4
+    rebase-strategy: auto
+    reviewers:
+      - "hartimcwildfly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "10:00"
+      timezone: "Europe/Zurich"
+    open-pull-requests-limit: 4
+    rebase-strategy: auto
+    reviewers:
+      - "hartimcwildfly"
