@@ -4,6 +4,11 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
 
+## Manuelle Schritte
+
+in /var/www/.ssh/authorized_keys und nicht in /home/www-data den public-key schreiben.
+dann noch ändern von nologin shell auf /bin/bash in /etc/passwd für www-data.
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
