@@ -2,9 +2,9 @@ package de.dhcd
 
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler
+import com.hierynomus.sshj.userauth.keyprovider.OpenSSHKeyV1KeyFile
 import jakarta.enterprise.context.ApplicationScoped
 import net.schmizz.sshj.SSHClient
-import net.schmizz.sshj.userauth.keyprovider.OpenSSHKeyFile
 import software.amazon.awssdk.core.sync.RequestBody
 import software.amazon.awssdk.services.s3.S3Client
 import software.amazon.awssdk.services.s3.model.PutObjectRequest
@@ -30,7 +30,7 @@ class RequestHandler(
 
             sshClient.addHostKeyVerifier(config.hostFingerprint)
             sshClient.connect(InetAddress.getByName(config.hostname), config.port)
-            sshClient.authPublickey(config.username, OpenSSHKeyFile().apply { init(config.privateKey, null) })
+            sshClient.authPublickey(config.username, OpenSSHKeyV1KeyFile().apply { init(config.privateKey, null) })
 
             val byteArrayInMemoryDestFile = ByteArrayInMemoryDestFile()
             sshClient.newSCPFileTransfer().download(config.path, byteArrayInMemoryDestFile)
