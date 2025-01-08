@@ -66,7 +66,7 @@ class RequestHandler(
 
         log.info("source file hash: $sha1Hash")
         log.info("target file hash: ${headObject?.checksumSHA1()}")
-        if(headObject?.eTag() == sha1Hash) {
+        if(sha1Hash == headObject?.checksumSHA1()) {
             log.info("Skipping upload of ${config.s3Key} as the contents are the same (SHA1: $sha1Hash)")
             return
         }
