@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory
 import software.amazon.awssdk.core.sync.RequestBody
 import software.amazon.awssdk.services.s3.S3Client
 import software.amazon.awssdk.services.s3.model.ChecksumAlgorithm
+import software.amazon.awssdk.services.s3.model.ChecksumMode
 import software.amazon.awssdk.services.s3.model.HeadObjectRequest
 import software.amazon.awssdk.services.s3.model.NoSuchKeyException
 import software.amazon.awssdk.services.s3.model.PutObjectRequest
@@ -56,6 +57,7 @@ class RequestHandler(
                 HeadObjectRequest.builder()
                     .bucket(config.s3Bucket)
                     .key(config.s3Key)
+                    .checksumMode(ChecksumMode.ENABLED)
                     .build()
             )}
             .recoverCatching { exception -> if (exception is NoSuchKeyException) null else throw exception }
