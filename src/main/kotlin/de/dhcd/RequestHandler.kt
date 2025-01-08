@@ -60,6 +60,8 @@ class RequestHandler(
             .recoverCatching { exception -> if (exception is NoSuchKeyException) null else throw exception }
             .getOrThrow()
 
+        log.info("source file hash: $md5Hash")
+        log.info("target file hash: ${headObject?.eTag()}")
         if(headObject?.eTag() == md5Hash) {
             log.info("Skipping upload of ${config.s3Key} as the contents are the same (MD5: $md5Hash)")
             return
