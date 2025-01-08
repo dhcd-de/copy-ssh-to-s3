@@ -17,6 +17,7 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.net.InetAddress
 import java.security.MessageDigest
+import java.util.*
 
 @ApplicationScoped
 class RequestHandler(
@@ -50,7 +51,7 @@ class RequestHandler(
     }
 
     fun upload(config: TargetConfiguration, file: ByteArray) {
-        val sha1Hash = file.toSHA1String()
+        val sha1Hash = file.toSHA1Base64String()
 
         val headObject = runCatching {
             s3Client.headObject(
@@ -81,6 +82,6 @@ class RequestHandler(
     }
 }
 
-fun ByteArray.toSHA1String(): String {
-    return MessageDigest.getInstance("SHA-1").digest(this).joinToString("") { "%02x".format(it) }
+fun ByteArray.toSHA1Base64String(): String {
+    return Base64.getEncoder().encodeToString(MessageDigest.getInstance("SHA-1").digest(this))
 }
