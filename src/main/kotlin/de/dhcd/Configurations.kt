@@ -16,7 +16,7 @@ data class SourceConfiguration(
     val privateKey: String,
 ) {
     override fun toString(): String {
-        return "SourceConfiguration(hostname='$hostname', hostFingerprint='$hostFingerprint', port=$port, path='$path', username='$username', privateKey='${privateKey.map { '*' }}')"
+        return "SourceConfiguration(hostname='$hostname', hostFingerprint='$hostFingerprint', port=$port, path='$path', username='$username', privateKey=<not shown>)"
     }
 }
 
