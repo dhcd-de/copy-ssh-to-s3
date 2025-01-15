@@ -30,6 +30,7 @@ class RequestHandler(
     }
 
     override fun handleRequest(input: InputStream, output: OutputStream, context: Context) {
+        log.info("started with configuration: $configurations")
         configurations.values.forEach {
             val downloadedFile = download(it.source)
             upload(it.target, downloadedFile)

@@ -14,7 +14,11 @@ data class SourceConfiguration(
     val path: String,
     val username: String,
     val privateKey: String,
-)
+) {
+    override fun toString(): String {
+        return "SourceConfiguration(hostname='$hostname', hostFingerprint='$hostFingerprint', port=$port, path='$path', username='$username', privateKey='${privateKey.map { '*' }}')"
+    }
+}
 
 data class TargetConfiguration(
     val s3Bucket: String,
