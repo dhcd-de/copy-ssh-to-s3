@@ -25,7 +25,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.quarkus:quarkus-arc")
 
-    implementation("com.hierynomus:sshj:0.39.0")
+    implementation("com.hierynomus:sshj:0.40.0")
 
     testImplementation("io.quarkus:quarkus-junit5")
 }
